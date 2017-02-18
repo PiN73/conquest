@@ -4,7 +4,6 @@ void setup() {
   size(640, 480);
   frameRate(30);
   game = new Game("testmap.dat");
-  
 }
 
 void draw() {
@@ -17,6 +16,7 @@ import java.util.*;
 import java.io.*;
 
 public class Game {
+  final int SCALE = 80; // TODO: add autoscale
   Map map;
   
   public Game(String mapFileName) {
@@ -24,7 +24,7 @@ public class Game {
   }
   
   public void paint() {
-    map.paint();
+    map.paint(SCALE);
   }
 }
 
@@ -49,8 +49,7 @@ public class Map {
     }
   }
   
-  void paint() {
-    final int SCALE = 80; // TODO: add autoscale
+  void paint(int SCALE) {
     pushMatrix();
     scale(SCALE);
     for(int x = 0; x < w; ++x) {
