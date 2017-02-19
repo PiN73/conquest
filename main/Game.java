@@ -18,6 +18,17 @@ public class Game {
           enemies.add(new Enemy(x + 0.5f, y + 0.5f));
   }
   
+  void moveSelectedTo(float x, float y) {
+    float target_x = x;
+    float target_y = y;
+    for (MyUnit myUnit: myUnits) {
+      if (myUnit.is_selected) {
+        myUnit.set_target(target_x, target_y);
+        myUnit.is_selected = false;
+      }
+    }
+  }
+  
   void step() {
     for (MyUnit myUnit: myUnits)
       myUnit.step();

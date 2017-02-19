@@ -28,7 +28,7 @@ void mouseReleased() {
     if (selection.dragged)
       game.select(selection);
     else
-      game.moveTo(mouseX, mouseY);
+      game.moveSelectedTo(mouseX, mouseY);
     selection = null;
 }
 
@@ -97,16 +97,9 @@ class GameGUI extends Game {
         myUnit.is_selected = true;
   }
   
-  void moveTo(int x, int y) {
-    float target_x = x / (float)SCALE;
-    float target_y = y / (float)SCALE;
-    for (MyUnit myUnit: myUnits) {
-      if (myUnit.is_selected) {
-        myUnit.set_target(target_x, target_y);
-        myUnit.is_selected = false;
-      }
-    }
-  }   
+  void moveSelectedTo(int x, int y) {
+    super.moveSelectedTo(x / (float)SCALE, y / (float)SCALE);
+  }
 }
 
 
