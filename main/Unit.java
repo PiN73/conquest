@@ -51,7 +51,7 @@ abstract class Unit {
 }
 
 class MyUnit extends Unit {
-  MyUnit(int x, int y) {
+  MyUnit(float x, float y) {
     super(x, y);
   }
   
@@ -59,7 +59,7 @@ class MyUnit extends Unit {
 }
 
 class Enemy extends Unit {
-  Enemy(int x, int y) {
+  Enemy(float x, float y) {
     super(x, y);
   }
 }
