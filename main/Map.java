@@ -17,7 +17,7 @@ class Map {
       in.close();
     }
     catch (IOException e) {
-      //println("map file not found");
+      System.out.println("map file not found");
     }
   }
   
