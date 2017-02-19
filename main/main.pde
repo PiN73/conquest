@@ -1,9 +1,9 @@
-Game game; //<>//
+GameGUI game; //<>//
 
 void setup() {
   size(640, 480);
   frameRate(30);
-  game = new Game("testmap.dat");
+  game = new GameGUI("testmap.dat", 80);
 }
 
 void draw() {
@@ -16,24 +16,19 @@ import java.util.*;
 import java.io.*;
 
 public class Game {
-  final int SCALE = 80; // TODO: add autoscale
   Map map;
   
   public Game(String mapFileName) {
     map = new Map(mapFileName);
   }
-  
-  public void paint() {
-    map.paint(SCALE);
-  }
 }
 
-public class Map {
+class Map {
   int w, h;
   int[][] cells;
   color[] COLOR = new color[]{color(127,127,127), color(0,255,0), color(255,0,0)};
   
-  public Map(String fileName) {
+  Map(String fileName) {
     try {
       Scanner in = new Scanner(new File(dataPath(fileName)));
       w = in.nextInt();
@@ -46,15 +41,28 @@ public class Map {
     }
     catch (IOException e) {
       println("map file not found");
-    }
+    } //<>//
   }
   
-  void paint(int SCALE) {
+  public color cell_color(int x, int y) {
+    return COLOR[cells[x][y]];
+  }
+}
+
+class GameGUI extends Game {
+  int SCALE; // TODO: add autoscale
+  
+  GameGUI(String mapFileName, int SCALE) {
+    super(mapFileName);
+    this.SCALE = SCALE;
+  }
+  
+  void paint() {
     pushMatrix();
     scale(SCALE);
-    for(int x = 0; x < w; ++x) {
-        for(int y = 0; y < h; ++y) {
-        fill(COLOR[cells[x][y]]);
+    for(int x = 0; x < map.w; ++x) {
+        for(int y = 0; y < map.h; ++y) {
+        fill(map.cell_color(x,y));
         noStroke();
         rect(x, y, 1, 1);
       }
