@@ -70,14 +70,14 @@ class GameGUI extends Game {
     noStroke();
     for (MyUnit myUnit: myUnits) {
       float a = myUnit.is_selected ? myUnitSize * 1.4 : myUnitSize;
-      rect(myUnit.x - a / 2 + 0.5, myUnit.y - a / 2 + 0.5, a, a);
+      rect(myUnit.x - a / 2, myUnit.y - a / 2, a, a);
     }
     
     float enemySize = 0.2; // relative to cell
     fill(darker(COLOR[2]));
     noStroke();
     for (Enemy enemy: enemies) {
-      rect(enemy.x - enemySize / 2 + 0.5, enemy.y - enemySize / 2 + 0.5, enemySize, enemySize);
+      rect(enemy.x - enemySize / 2, enemy.y - enemySize / 2, enemySize, enemySize);
     }
     
     popMatrix();
@@ -86,10 +86,10 @@ class GameGUI extends Game {
   boolean nowSelecting = false;
   
   void select(Selection selection) {
-    float selection_x1 = selection.x1 / (float)SCALE - 0.5;
-    float selection_y1 = selection.y1 / (float)SCALE - 0.5;
-    float selection_x2 = selection.x2 / (float)SCALE - 0.5;
-    float selection_y2 = selection.y2 / (float)SCALE - 0.5;
+    float selection_x1 = selection.x1 / (float)SCALE;
+    float selection_y1 = selection.y1 / (float)SCALE;
+    float selection_x2 = selection.x2 / (float)SCALE;
+    float selection_y2 = selection.y2 / (float)SCALE;
     
     for (MyUnit myUnit: myUnits)
       if (selection_x1 <= myUnit.x && myUnit.x <= selection_x2 &&
@@ -98,8 +98,8 @@ class GameGUI extends Game {
   }
   
   void moveTo(int x, int y) {
-    float target_x = x / (float)SCALE - 0.5;
-    float target_y = y / (float)SCALE - 0.5;
+    float target_x = x / (float)SCALE;
+    float target_y = y / (float)SCALE;
     for (MyUnit myUnit: myUnits) {
       if (myUnit.is_selected) {
         myUnit.set_target(target_x, target_y);
