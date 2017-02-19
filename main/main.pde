@@ -1,4 +1,4 @@
-GameGUI game; //<>//
+GameGUI game;
 
 void setup() {
   size(640, 480);
@@ -41,7 +41,7 @@ class GameGUI extends Game {
   GameGUI(String mapFileName, int SCALE) {
     super(mapFileName);
     this.SCALE = SCALE;
-  } //<>//
+  }
   
   color[] COLOR = new color[]{#777777, #00FF00, #FF0000};
   
@@ -108,6 +108,7 @@ class GameGUI extends Game {
     }
   }   
 }
+
 
 class Selection {
   int x1, y1, x2, y2;
