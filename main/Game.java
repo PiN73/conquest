@@ -17,4 +17,11 @@ public class Game {
         else if (map.cell_type(x, y) == 2)
           enemies.add(new Enemy(x, y));
   }
+  
+  void step() {
+    for (MyUnit myUnit: myUnits)
+      myUnit.step();
+    for (Enemy enemy: enemies)
+      enemy.step();
+  }
 }
