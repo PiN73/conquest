@@ -1,4 +1,4 @@
-Game game;
+Game game; //<>//
 
 void setup() {
   size(640, 480);
@@ -41,7 +41,7 @@ public class Map {
       cells = new int[w][h];
       for(int y = 0; y < h; ++y)
           for(int x = 0; x < w; ++x)
-              cells[x][y] = in.nextInt();
+              cells[x][y] = in.nextInt(); //<>//
       in.close();
     }
     catch (IOException e) {
