@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Game {
   Map map;
-  ArrayList<MyUnit> myUnits; 
+  ArrayList<MyUnit> myUnits;
   ArrayList<Enemy> enemies;
   
   Game(String mapFileName) { //?
     map = new Map(mapFileName);
-    myUnits = new ArrayList<MyUnit>(); 
+    myUnits = new ArrayList<MyUnit>();
     enemies = new ArrayList<Enemy>();
     
     for(int y = 0; y < map.h; ++y) //?
