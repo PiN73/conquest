@@ -1,13 +1,13 @@
 import java.util.Scanner;
 import java.io.*;
 
-class Map {
+class Map { //?
   int w, h;
-  int[][] cells;
+  int[][] cells; //?
   
-  Map(String fileName) {
+  Map(String fileName) { //?
     try {
-      Scanner in = new Scanner(new File(fileName));
+      Scanner in = new Scanner(new File(fileName)); //?
       w = in.nextInt();
       h = in.nextInt();
       cells = new int[w][h];
@@ -17,11 +17,11 @@ class Map {
       in.close();
     }
     catch (IOException e) {
-      System.out.println("map file not found");
+      System.out.println("map file not found"); // Тут принт х)
     }
   }
   
-  public int cell_type(int x, int y) {
+  public int cell_type(int x, int y) { //?
     return cells[x][y];
   }
 } 
