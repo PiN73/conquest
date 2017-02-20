@@ -14,16 +14,16 @@ void draw() {
 Selection selection;
 
 void mousePressed() {
-  selection = new Selection(mouseX, mouseY);
+  selection = new Selection(mouseX, mouseY); //?
 }
 
-void mouseDragged() {
+void mouseDragged() { //?
   if (selection != null)
     selection.dragged = true;
   // show current selection?
 }
 
-void mouseReleased() {
+void mouseReleased() { //?
     selection.finish(mouseX, mouseY);
     if (selection.dragged)
       game.select(selection);
@@ -38,12 +38,12 @@ void mouseReleased() {
 class GameGUI extends Game {
   int SCALE; // TODO: add autoscale
   
-  GameGUI(String mapFileName, int SCALE) {
+  GameGUI(String mapFileName, int SCALE) { //?
     super(mapFileName);
     this.SCALE = SCALE;
   }
   
-  color[] COLOR = new color[]{#777777, #00FF00, #FF0000};
+  color[] COLOR = new color[]{#777777, #00FF00, #FF0000}; //?
   
   private color darker(color c) {
     int a = (c >> 24) & 0xFF;
@@ -53,7 +53,7 @@ class GameGUI extends Game {
     return color(r / 2, g / 2, b / 2, a);
   }
   
-  void paint() {
+  void paint() { //?
     pushMatrix();
     scale(SCALE);
     
@@ -85,7 +85,7 @@ class GameGUI extends Game {
   
   boolean nowSelecting = false;
   
-  void select(Selection selection) {
+  void select(Selection selection) { //?
     float selection_x1 = selection.x1 / (float)SCALE;
     float selection_y1 = selection.y1 / (float)SCALE;
     float selection_x2 = selection.x2 / (float)SCALE;
@@ -97,13 +97,13 @@ class GameGUI extends Game {
         myUnit.is_selected = true;
   }
   
-  void moveSelectedTo(int x, int y) {
+  void moveSelectedTo(int x, int y) { //?
     super.moveSelectedTo(x / (float)SCALE, y / (float)SCALE);
   }
 }
 
 
-class Selection {
+class Selection { //?
   int x1, y1, x2, y2;
   boolean dragged = false;
   Selection(int startX, int startY) {
