@@ -14,22 +14,29 @@ void draw() {
 Selection selection;
 
 void mousePressed() {
-  selection = new Selection(mouseX, mouseY); //?
+  // when mouse is pressed, save its coordinates to `selection`
+  selection = new Selection(mouseX, mouseY);
 }
 
-void mouseDragged() { //?
+void mouseDragged() {
+  // when mouse is dragged, let `selection` know about this
+  // to diifer mouse click and mouse move
   if (selection != null)
     selection.dragged = true;
   // show current selection?
 }
 
-void mouseReleased() { //?
-    selection.finish(mouseX, mouseY);
-    if (selection.dragged)
-      game.select(selection);
-    else
-      game.moveSelectedTo(mouseX, mouseY);
-    selection = null;
+void mouseReleased() {
+  // when mouse is relased, save its coordinates to `selection`
+  selection.finish(mouseX, mouseY);
+  if (selection.dragged) {
+    // tell `game` to select all `myUnits` inside selection rectangle
+    game.select(selection);
+  } else {
+    // tell `game` to move all selected `myUnits` to the new place
+    game.moveSelectedTo(mouseX, mouseY);
+  }
+  selection = null;
 }
 
 
@@ -38,12 +45,13 @@ void mouseReleased() { //?
 class GameGUI extends Game {
   int SCALE; // TODO: add autoscale
   
-  GameGUI(String mapFileName, int SCALE) { //?
-    super(mapFileName);
-    this.SCALE = SCALE;
+  GameGUI(String mapFileName, int SCALE) { // constructor of GameGUI
+    super(mapFileName); // call constructor of Game
+    this.SCALE = SCALE; // set scale
   }
   
-  color[] COLOR = new color[]{#777777, #00FF00, #FF0000}; //?
+  // colors of territory: 0)neutral-gray, 1)my-green, 2)enemy-red
+  color[] COLOR = new color[]{#777777, #00FF00, #FF0000};
   
   private color darker(color c) {
     int a = (c >> 24) & 0xFF;
@@ -53,7 +61,7 @@ class GameGUI extends Game {
     return color(r / 2, g / 2, b / 2, a);
   }
   
-  void paint() { //?
+  void paint() { // rendering
     pushMatrix();
     scale(SCALE);
     
@@ -85,7 +93,7 @@ class GameGUI extends Game {
   
   boolean nowSelecting = false;
   
-  void select(Selection selection) { //?
+  void select(Selection selection) { // select myUnits that are inside selection
     float selection_x1 = selection.x1 / (float)SCALE;
     float selection_y1 = selection.y1 / (float)SCALE;
     float selection_x2 = selection.x2 / (float)SCALE;
@@ -97,7 +105,7 @@ class GameGUI extends Game {
         myUnit.is_selected = true;
   }
   
-  void moveSelectedTo(int x, int y) { //?
+  void moveSelectedTo(int x, int y) { // move myUnits that are selected to new place 
     super.moveSelectedTo(x / (float)SCALE, y / (float)SCALE);
   }
 }

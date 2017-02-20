@@ -1,13 +1,14 @@
 import java.util.Scanner;
 import java.io.*;
 
-class Map { //?
+class Map {
   int w, h;
-  int[][] cells; //?
+  int[][] cells; // types of all cells at the map
   
-  Map(String fileName) { //?
+  Map(String fileName) {
     try {
-      Scanner in = new Scanner(new File(fileName)); //?
+      // read map data from file:
+      Scanner in = new Scanner(new File(fileName));
       w = in.nextInt();
       h = in.nextInt();
       cells = new int[w][h];
@@ -17,11 +18,13 @@ class Map { //?
       in.close();
     }
     catch (IOException e) {
-      System.out.println("map file not found"); //?
+      // error opening / reading the file:
+      System.out.println("map file not found");
     }
   }
   
-  public int cell_type(int x, int y) { //?
+  public int cell_type(int x, int y) {
+    // just getter for cell type
     return cells[x][y];
   }
 } 

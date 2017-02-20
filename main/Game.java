@@ -5,12 +5,13 @@ public class Game {
   ArrayList<MyUnit> myUnits;
   ArrayList<Enemy> enemies;
   
-  Game(String mapFileName) { //?
+  Game(String mapFileName) { // 
     map = new Map(mapFileName);
     myUnits = new ArrayList<MyUnit>();
     enemies = new ArrayList<Enemy>();
     
-    for(int y = 0; y < map.h; ++y) //?
+    // add one unit in every my and enemy's territory:
+    for(int y = 0; y < map.h; ++y)
       for(int x = 0; x < map.w; ++x)
         if (map.cell_type(x, y) == 1)  
           myUnits.add(new MyUnit(x + 0.5f, y + 0.5f));
@@ -18,18 +19,17 @@ public class Game {
           enemies.add(new Enemy(x + 0.5f, y + 0.5f));
   }
   
-  void moveSelectedTo(float x, float y) { //?
-    float target_x = x;
-    float target_y = y;
+  void moveSelectedTo(float x, float y) {
     for (MyUnit myUnit: myUnits) {
       if (myUnit.is_selected) {
-        myUnit.set_target(target_x, target_y);
+        myUnit.set_target(x, y);
         myUnit.is_selected = false;
       }
     }
   }
   
-  void step() { //?
+  void step() {
+    // at each tick: let all units make steps
     for (MyUnit myUnit: myUnits)
       myUnit.step();
     for (Enemy enemy: enemies)
