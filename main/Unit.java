@@ -1,6 +1,6 @@
 import java.lang.Math;
 
-abstract class Unit { 
+abstract class Unit {
   float x, y;
   
   Unit(float x, float y) {
@@ -8,7 +8,7 @@ abstract class Unit {
     this.y = y;
   }
   
-  boolean is_moving = false; 
+  boolean is_moving = false;
   float target_x, target_y;
   
   private float myrnd(float max) { //?
