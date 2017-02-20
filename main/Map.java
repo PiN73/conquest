@@ -17,7 +17,7 @@ class Map { //?
       in.close();
     }
     catch (IOException e) {
-      System.out.println("map file not found"); // Тут принт х)
+      System.out.println("map file not found"); //?
     }
   }
   
