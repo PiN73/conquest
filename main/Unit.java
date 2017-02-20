@@ -11,13 +11,14 @@ abstract class Unit {
   boolean is_moving = false;
   float target_x, target_y;
   
-  private float myrnd(float max) { //?
-    // small numbers appear more often
+  private float myrnd(float max) {
+    // generate a random number in range [0, max)   
+    // small numbers appear more often than large
     float tmp = (float)Math.random() * max;
     return (float)Math.random() * tmp;
   }
   
-  void set_target(float target_x, float target_y) { //?
+  void set_target(float target_x, float target_y) {   
     is_moving = true;
     this.target_x = target_x + myrnd(0.5f);
     this.target_y = target_y + myrnd(0.5f);
@@ -28,6 +29,8 @@ abstract class Unit {
   }
   
   void step() {
+    // Unit makes one step to its target
+    
     if (!is_moving)
       return;
     
@@ -50,7 +53,9 @@ abstract class Unit {
   }
 }
 
-class MyUnit extends Unit { //?
+
+class MyUnit extends Unit {
+  // `green` Unit (that is controlled by the player)
   MyUnit(float x, float y) {
     super(x, y);
   }
@@ -58,7 +63,9 @@ class MyUnit extends Unit { //?
   boolean is_selected = false;
 }
 
+
 class Enemy extends Unit {
+  // `red` Unit (that will be controlled by the AI)
   Enemy(float x, float y) {
     super(x, y);
   }
